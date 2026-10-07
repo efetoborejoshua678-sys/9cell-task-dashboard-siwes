@@ -1,18 +1,33 @@
 :root {
-  --bg-dark: #0b0b12;
-  --bg-deep: #090a12;
-  --bg-soft: #16151d;
-  --panel: rgba(17, 17, 22, 0.86);
-  --panel-soft: rgba(255, 255, 255, 0.04);
+  /* ── Deep Navy Blue Dark Theme ─────────────────────────────────────── */
+  --bg-deep:    #060B14;           /* deepest background – near black navy  */
+  --bg-dark:    #0D1321;           /* main page background                  */
+  --bg-soft:    #111827;           /* card / panel background               */
+  --bg-elevated:#161F30;           /* slightly lighter surface (hover etc.) */
+  --panel:      rgba(13, 19, 33, 0.92);   /* glassmorphic overlay             */
+  --panel-soft: rgba(59, 130, 246, 0.05); /* very subtle blue tint fill       */
+
+  /* Accent – electric blue (matches image CTA & active states) */
+  --accent:      #3B82F6;
+  --accent-deep: #2563EB;
+  --accent-glow: rgba(59, 130, 246, 0.28);
+
+  /* Legacy aliases – kept so old rules still compile */
+  --gold:      #3B82F6;
+  --gold-soft: #3B82F6;
+  --gold-deep: #2563EB;
+
+  /* Text */
   --white: #FFFFFF;
   --black: #000000;
-  --gold: #D4AF37;
-  --gold-soft: #D4AF37;
-  --gold-deep: #856B2F;
-  --muted: #b7b3bb;
-  --text: #f3f1f7;
-  --line: rgba(255, 255, 255, 0.08);
-  --shadow: rgba(0, 0, 0, 0.42);
+  --text:  #E8EDF5;                /* primary text – bright blue-white      */
+  --muted: #8B9CB8;                /* secondary / muted text                */
+
+  /* Borders & shadows */
+  --line:   rgba(59, 130, 246, 0.14); /* blue-tinted border                 */
+  --shadow: rgba(0, 0, 0, 0.55);
+
+  /* Radii */
   --radius-xl: 24px;
   --radius-lg: 18px;
   --radius-md: 12px;
@@ -58,7 +73,8 @@ html[data-theme="light"] #root {
 
 .theme-toggle:hover {
   background: var(--panel);
-  border-color: var(--gold);
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.35);
   transform: rotate(20deg) scale(1.08);
 }
 
@@ -178,10 +194,17 @@ img {
 .gold-btn {
   border: none;
   border-radius: 999px;
-  background: var(--gold);
-  color: var(--black);
+  background: var(--accent);
+  color: var(--white);
   font-weight: 700;
-  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.32), -4px -4px 10px rgba(255, 255, 255, 0.08), inset 1px 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: background 0.18s, box-shadow 0.18s, transform 0.15s;
+}
+
+.gold-btn:hover {
+  background: var(--accent-deep);
+  box-shadow: 0 0 28px rgba(59, 130, 246, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
 }
 
 .small-btn {
@@ -216,10 +239,10 @@ img {
   width: min(78vw, 820px);
   height: 180px;
   border-radius: 48px;
-  background: linear-gradient(135deg, rgba(163, 115, 242, 0.9), rgba(201, 175, 255, 0.85));
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.82), rgba(59, 130, 246, 0.68));
   transform: rotate(-2deg);
-  filter: blur(0.8px);
-  box-shadow: 0 24px 64px rgba(120, 74, 197, 0.42);
+  filter: blur(1px);
+  box-shadow: 0 24px 64px rgba(59, 130, 246, 0.38);
 }
 
 .hero-wrap h1 {
@@ -307,9 +330,9 @@ img {
   display: grid;
   place-items: center;
   border-radius: 12px;
-  background: rgba(212, 175, 89, 0.18);
-  color: var(--gold-soft);
-  border: 1px solid rgba(212, 175, 89, 0.3);
+  background: rgba(59, 130, 246, 0.14);
+  color: #60A5FA;
+  border: 1px solid rgba(59, 130, 246, 0.28);
   font-size: 1.2rem;
   margin-bottom: 18px;
 }
@@ -347,10 +370,10 @@ img {
   width: min(100%, 500px);
   padding: 28px 26px 30px;
   border-radius: 28px;
-  background: rgba(14, 14, 18, 0.78);
-  border: 1px solid rgba(212, 175, 89, 0.4);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.52);
-  backdrop-filter: blur(6px);
+  background: rgba(8, 13, 26, 0.88);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.52), 0 0 0 1px rgba(59, 130, 246, 0.08);
+  backdrop-filter: blur(8px);
 }
 
 .auth-avatar {
@@ -387,7 +410,7 @@ img {
 }
 
 .auth-toggle button {
-  border: 1px solid rgba(212, 175, 89, 0.4);
+  border: 1px solid rgba(59, 130, 246, 0.3);
   border-radius: 999px;
   background: transparent;
   color: rgba(255, 255, 255, 0.72);
@@ -396,7 +419,8 @@ img {
 }
 
 .auth-toggle button.active {
-  background: rgba(212, 175, 89, 0.12);
+  background: rgba(59, 130, 246, 0.18);
+  border-color: rgba(59, 130, 246, 0.5);
   color: var(--white);
 }
 
@@ -429,8 +453,8 @@ img {
 }
 
 .input-field input:focus {
-  border-color: rgba(212, 175, 89, 0.9);
-  box-shadow: 0 0 0 3px rgba(212, 175, 89, 0.15);
+  border-color: rgba(59, 130, 246, 0.8);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
 }
 
 .auth-submit {
@@ -455,7 +479,7 @@ img {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 260px minmax(0, 1.5fr) 320px;
-  background: linear-gradient(180deg, rgba(11, 11, 18, 0.96), rgba(8, 8, 12, 1));
+  background: linear-gradient(160deg, #060B14 0%, #0A1020 50%, #060B14 100%);
 }
 
 .dashboard-sidebar,
@@ -465,8 +489,8 @@ img {
 }
 
 .dashboard-sidebar {
-  background: rgba(15, 15, 20, 0.9);
-  border-right: 1px solid var(--line);
+  background: rgba(8, 12, 24, 0.96);
+  border-right: 1px solid rgba(59, 130, 246, 0.14);
 }
 
 .sidebar-brand {
@@ -488,8 +512,8 @@ img {
 }
 
 .nav-item.active {
-  background: rgba(212, 175, 89, 0.12);
-  border-color: rgba(212, 175, 89, 0.35);
+  background: rgba(59, 130, 246, 0.14);
+  border-color: rgba(59, 130, 246, 0.38);
   color: var(--white);
 }
 
@@ -497,10 +521,10 @@ img {
 .summary-card,
 .board-panel,
 .aside-card {
-  background: rgba(21, 21, 28, 0.8);
-  border: 1px solid var(--line);
+  background: rgba(13, 19, 35, 0.85);
+  border: 1px solid rgba(59, 130, 246, 0.12);
   border-radius: 22px;
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
 }
 
 .team-card {
@@ -537,7 +561,8 @@ img {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--gold-soft), var(--gold));
+  background: linear-gradient(90deg, #2563EB, #3B82F6, #60A5FA);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
 }
 
 .dashboard-main {
@@ -577,7 +602,8 @@ img {
 }
 
 .summary-card.accent {
-  background: linear-gradient(135deg, rgba(212, 175, 89, 0.18), rgba(17, 17, 22, 0.6));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(13, 19, 33, 0.75));
+  border-color: rgba(59, 130, 246, 0.25);
 }
 
 .summary-card span,
@@ -620,8 +646,8 @@ img {
 }
 
 .filter.active {
-  background: rgba(212, 175, 89, 0.12);
-  border-color: rgba(212, 175, 89, 0.35);
+  background: rgba(59, 130, 246, 0.14);
+  border-color: rgba(59, 130, 246, 0.38);
   color: var(--white);
 }
 
@@ -632,8 +658,8 @@ img {
 }
 
 .task-column {
-  background: rgba(10, 10, 14, 0.5);
-  border: 1px solid var(--line);
+  background: rgba(6, 11, 20, 0.7);
+  border: 1px solid rgba(59, 130, 246, 0.1);
   border-radius: 20px;
   padding: 16px 12px 12px;
 }
@@ -657,8 +683,8 @@ img {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(212, 175, 89, 0.14);
-  color: var(--gold-soft);
+  background: rgba(59, 130, 246, 0.16);
+  color: #60A5FA;
 }
 
 .task-list {
@@ -670,8 +696,8 @@ img {
 .task-card {
   padding: 16px 14px;
   border-radius: 18px;
-  background: rgba(17, 17, 22, 0.76);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(13, 19, 33, 0.88);
+  border: 1px solid rgba(59, 130, 246, 0.1);
 }
 
 .task-topline {
@@ -733,8 +759,8 @@ img {
 }
 
 .dashboard-aside {
-  background: rgba(11, 11, 16, 0.9);
-  border-left: 1px solid var(--line);
+  background: rgba(8, 12, 24, 0.96);
+  border-left: 1px solid rgba(59, 130, 246, 0.14);
 }
 
 .aside-card {
@@ -772,9 +798,9 @@ img {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  background: linear-gradient(135deg, #2563EB, #3B82F6);
   margin-top: 6px;
-  box-shadow: 0 0 0 4px rgba(212, 175, 89, 0.12);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
 }
 
 .notification-list strong {
@@ -791,7 +817,8 @@ img {
 }
 
 .spotlight {
-  background: linear-gradient(135deg, rgba(212, 175, 89, 0.12), rgba(17, 17, 22, 0.8));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), rgba(13, 19, 33, 0.88));
+  border-color: rgba(59, 130, 246, 0.2);
 }
 
 .spotlight h3 {
