@@ -17,7 +17,7 @@ const featureCards = [
   },
 ];
 
-export default function LandingPage({ onStart, onLogin }) {
+export default function LandingPage({ onStart, onLogin, theme, onToggleTheme }) {
   return (
     <div className="landing-page">
       <header className="landing-header">
@@ -31,6 +31,15 @@ export default function LandingPage({ onStart, onLogin }) {
           <a href="#faq">FAQ</a>
         </nav>
         <div className="landing-header-actions">
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={onToggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
           <button type="button" className="landing-login" onClick={onLogin}>Sign in</button>
           <button type="button" className="landing-btn-primary landing-btn-compact" onClick={onStart}>Get started</button>
         </div>

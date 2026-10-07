@@ -48,6 +48,16 @@ export default function App() {
     acceptedTerms: false,
   });
 
+  // ── Theme management ─────────────────────────────────────────────────
+  const [theme, setTheme] = useState(() => localStorage.getItem('td-theme') || 'dark');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('td-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
+
   useEffect(() => {
     const initializeSession = async () => {
       const { data: { session: currentSession } } = await supabase.auth.getSession();
@@ -367,6 +377,8 @@ export default function App() {
         <LandingPage
           onStart={() => { setAuthMode('signup'); setScreen('login'); }}
           onLogin={() => { setAuthMode('login'); setScreen('login'); }}
+          theme={theme}
+          onToggleTheme={toggleTheme}
         />
       ) : screen === 'dashboard' ? (
         <DashboardPage
@@ -381,6 +393,8 @@ export default function App() {
           onMoveTask={isReadOnlyPreview ? undefined : handleMoveTask}
           taskError={taskError}
           previewMode={isReadOnlyPreview}
+          theme={theme}
+          onToggleTheme={toggleTheme}
         />
       ) : (
         <AuthPage
@@ -394,6 +408,8 @@ export default function App() {
           oauthProvider={oauthProvider}
           onOAuth={handleOAuthSignIn}
           error={authError}
+          theme={theme}
+          onToggleTheme={toggleTheme}
         />
       )}
       {isTaskFormOpen && (

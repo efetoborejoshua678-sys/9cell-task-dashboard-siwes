@@ -13,6 +13,8 @@ export default function AuthPage({
   oauthProvider,
   onOAuth,
   error,
+  theme,
+  onToggleTheme,
 }) {
   const isLogin = mode === 'login';
   const [showPassword, setShowPassword] = useState(false);
@@ -24,9 +26,20 @@ export default function AuthPage({
         '--auth-background': `url(${authBg})`,
       }}
     >
-      <button type="button" className="auth-back" onClick={onBackToLanding}>
-        <span aria-hidden="true">&lt;-</span> Back to home
-      </button>
+      <div className="auth-top-bar">
+        <button type="button" className="auth-back" onClick={onBackToLanding}>
+          <span aria-hidden="true">&lt;-</span> Back to home
+        </button>
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={onToggleTheme}
+          aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+        >
+          {theme === 'dark' ? '☀️' : '🌙'}
+        </button>
+      </div>
 
       <main className="auth-split-card">
         <section className="auth-visual-panel">

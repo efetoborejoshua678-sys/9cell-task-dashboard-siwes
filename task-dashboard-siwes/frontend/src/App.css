@@ -18,6 +18,50 @@
   --radius-md: 12px;
 }
 
+/* ── Light theme overrides ──────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-dark: #f0f0f8;
+  --bg-deep: #f5f5fc;
+  --bg-soft: #e8e7f3;
+  --panel: rgba(255, 255, 255, 0.92);
+  --panel-soft: rgba(0, 0, 0, 0.04);
+  --muted: #6b6880;
+  --text: #1a1828;
+  --line: rgba(0, 0, 0, 0.10);
+  --shadow: rgba(0, 0, 0, 0.12);
+}
+
+html[data-theme="light"] body,
+html[data-theme="light"] #root {
+  background: var(--bg-deep);
+  color: var(--text);
+}
+
+/* ── Theme Toggle Button ─────────────────────────────────────────────── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  background: var(--panel-soft);
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  flex-shrink: 0;
+  line-height: 1;
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  background: var(--panel);
+  border-color: var(--gold);
+  transform: rotate(20deg) scale(1.08);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -1704,11 +1748,18 @@ img {
   pointer-events: none;
 }
 
-.auth-back {
+.auth-top-bar {
   position: absolute;
   z-index: 2;
-  top: 28px;
+  top: 24px;
   left: clamp(20px, 5vw, 68px);
+  right: clamp(20px, 5vw, 68px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.auth-back {
   padding: 10px 0;
   border: 0;
   background: transparent;
@@ -1719,6 +1770,12 @@ img {
 .auth-back span {
   margin-right: 8px;
   color: #9d7938;
+}
+
+.auth-top-bar .theme-toggle {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.2);
+  color: #f3f1f7;
 }
 
 .auth-panel {

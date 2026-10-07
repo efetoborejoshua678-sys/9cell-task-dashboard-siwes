@@ -44,7 +44,7 @@ function getCalendarDates(monthDate) {
   ));
 }
 
-export default function DashboardPage({ tasks, userEmail, userName, onBackToLanding, onCreateTask, onEditTask, onDeleteTask, onToggleTask, onMoveTask, taskError, previewMode = false }) {
+export default function DashboardPage({ tasks, userEmail, userName, onBackToLanding, onCreateTask, onEditTask, onDeleteTask, onToggleTask, onMoveTask, taskError, previewMode = false, theme, onToggleTheme }) {
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(today);
   const [calendarMonth, setCalendarMonth] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
@@ -273,6 +273,15 @@ export default function DashboardPage({ tasks, userEmail, userName, onBackToLand
               <span aria-hidden="true">Search</span>
               <input type="search" value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} placeholder="Search tasks..." aria-label="Search tasks" />
             </label>
+            <button
+              type="button"
+              className="theme-toggle"
+              onClick={onToggleTheme}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+            >
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </button>
             <button
               type="button"
               className="dashboard-notice-button"
